@@ -1,6 +1,7 @@
 use std::io::stdin;
 use std::cmp::Ordering;
 use rand::Rng;
+use colored::Colorize;
 
 fn main() {
     let mut count: i16 = 1;
@@ -8,7 +9,7 @@ fn main() {
     while count<=10{
         let secret_number = rand::thread_rng().gen_range(1..=100);
 
-        println!("Enter your guess: ");
+        println!("{}", "Enter your guess: ".green().italic());
         let mut guess = String::new();
         stdin()
             .read_line(&mut guess)
@@ -19,20 +20,22 @@ fn main() {
             Err(_) => continue,
         };
 
-        println!("You guessed: {}", guess);
+        print!("{}", "You Guessed: ".bright_yellow());
+        println!("{}", guess);
 
         match guess.cmp(&secret_number) {
-            Ordering::Less => println!("Too Small!"),
+            Ordering::Less => println!("{}", "Too Small!".bright_red().italic()),
             Ordering::Equal => {
-                println!("Bingo");
+                println!("{}", "Bingo".green().bold());
                 break;
             }
-            Ordering::Greater => println!("Too Big!"),
+            Ordering::Greater => println!("{}", "Too Big!".red().bold()),
         }
-        println!("Tries left: {}", 10-count);
+        print!("{}", "Tries Left: ".yellow());
+        println!("{}", 10-count);
         count += 1;
         if count == 11 {
-            println!("Outta tries!");
+            println!("{}", "Outta tries!".bright_red().bold());
         }
     }
 

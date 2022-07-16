@@ -21,7 +21,7 @@ fn main() {
             Err(_) => continue,
         };
 
-        print!("{}", "You Guessed: ".bright_yellow());
+        print!("{}", "You guessed: ".bright_yellow());
         println!("{}", guess);
 
         match guess.cmp(&secret_number) {

@@ -5,10 +5,10 @@ use colored::Colorize;
 
 fn main() {
     let mut count: i16 = 1;
+    let secret_number = rand::thread_rng().gen_range(1..=100);
 
     while count<=10{
         println!("--------------------------------------------------------------------------------------");
-        let secret_number = rand::thread_rng().gen_range(1..=100);
 
         println!("{}", "Enter your guess: ".green().italic());
         let mut guess = String::new();
